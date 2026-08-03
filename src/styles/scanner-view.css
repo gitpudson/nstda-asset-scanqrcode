@@ -127,8 +127,8 @@
 
     /* width: 240px;
     height: 240px; */
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
 
     top: 50%;
     left: 50%;
@@ -201,8 +201,8 @@
 .corner {
     position: absolute;
 
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
 
     border: 4px solid #4f7cff;
 

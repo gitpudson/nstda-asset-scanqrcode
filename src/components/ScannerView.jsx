@@ -17,7 +17,7 @@ export default function ScannerView() {
 
     const handleResetScan = () => {
         setScanResult(null);
-        setCameraOn(true); //ถ้าต้องการให้กด "สแกนใหม่" แล้วเปิดกล้องต่อทันที true
+        setCameraOn(false); //ถ้าต้องการให้กด "สแกนใหม่" แล้วเปิดกล้องต่อทันที true
     };
 
     return (
@@ -86,9 +86,9 @@ export default function ScannerView() {
                     </div>
                 )}
 
-                <div className="status-icon">
+                {/* <div className="status-icon">
                     <CropFreeIcon />
-                </div>
+                </div> */}
 
                 <h2>
                     {cameraOn ? "พร้อมสแกน" : "เริ่มสแกน"}
