@@ -111,6 +111,17 @@
     cursor: pointer;
 
     z-index: 100;
+
+    /* เพิ่ม */
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.flash-btn:focus,
+.flash-btn:focus-visible,
+.flash-btn:active {
+outline: none;
 }
 
 /* ปุ่มเปิดกล้อง */
