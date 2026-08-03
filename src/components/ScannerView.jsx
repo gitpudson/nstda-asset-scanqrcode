@@ -17,7 +17,7 @@ export default function ScannerView() {
 
     const handleResetScan = () => {
         setScanResult(null);
-        setCameraOn(false);
+        setCameraOn(true); //ถ้าต้องการให้กด "สแกนใหม่" แล้วเปิดกล้องต่อทันที true
     };
 
     return (

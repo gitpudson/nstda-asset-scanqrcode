@@ -7,7 +7,7 @@
 ========================= */
 
 .camera-area {
-    height: 420px;
+    height: 320px;
 
     position: relative;
     overflow: hidden;
@@ -125,8 +125,10 @@
 .scan-frame {
     position: absolute;
 
-    width: 240px;
-    height: 240px;
+    /* width: 240px;
+    height: 240px; */
+    width: 200px;
+    height: 200px;
 
     top: 50%;
     left: 50%;
@@ -150,10 +152,8 @@
     height: 120px;
 
     background-image:
-        radial-gradient(
-            #dbeafe 1px,
-            transparent 1px
-        );
+        radial-gradient(#dbeafe 1px,
+            transparent 1px);
 
     background-size: 8px 8px;
 
@@ -175,8 +175,10 @@
 .sample-qr {
     position: absolute;
 
-    width: 180px;
-    height: 180px;
+    /* width: 180px;
+    height: 180px; */
+    width: 130px;
+    height: 130px;
 
     object-fit: contain;
 
@@ -205,9 +207,7 @@
     border: 5px solid #4f7cff;
 
     filter:
-        drop-shadow(
-            0 0 8px rgba(79, 124, 255, 0.7)
-        );
+        drop-shadow(0 0 8px rgba(79, 124, 255, 0.7));
 }
 
 .tl {
@@ -264,14 +264,12 @@
 
     border-radius: 999px;
 
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #38bdf8,
-        #60a5fa,
-        #38bdf8,
-        transparent
-    );
+    background: linear-gradient(90deg,
+            transparent,
+            #38bdf8,
+            #60a5fa,
+            #38bdf8,
+            transparent);
 
     box-shadow:
         0 0 10px #38bdf8,
@@ -304,7 +302,8 @@
 .scan-text {
     position: absolute;
 
-    bottom: 20px;
+    /* bottom: 20px; */
+    bottom: 8px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -379,11 +378,9 @@
     border-radius: 20px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #eef4ff,
-            #dbeafe
-        );
+            #dbeafe);
 
     display: flex;
     align-items: center;
