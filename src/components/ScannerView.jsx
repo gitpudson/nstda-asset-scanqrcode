@@ -1,6 +1,8 @@
 import { useState } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CropFreeIcon from "@mui/icons-material/CropFree";
+// import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import CloseIcon from "@mui/icons-material/Close";
 
 import Html5Scanner from "./Html5Scanner";
 import { assets } from "../assets/assets";
@@ -20,6 +22,14 @@ export default function ScannerView() {
         setCameraOn(true); //ถ้าต้องการให้กด "สแกนใหม่" แล้วเปิดกล้องต่อทันที true
     };
 
+    const handleToggleCamera = () => {
+        setCameraOn((prev) => !prev);
+
+        if (cameraOn) {
+            setScanResult(null);
+        }
+    };
+
     return (
         <div className="scanner-card">
             <div className="camera-area">
@@ -33,14 +43,26 @@ export default function ScannerView() {
                     />
                 )}
 
-                {!cameraOn && (
+                {/* {!cameraOn && (
                     <button
                         className="flash-btn"
                         onClick={handleStartScan}
                     >
                         <CameraAltIcon />
                     </button>
-                )}
+                )} */}
+
+                <button
+                    className="flash-btn"
+                    onClick={handleToggleCamera}
+                >
+                    {cameraOn ? (
+                        <CloseIcon />
+                    ) : (
+                        <CameraAltIcon />
+                    )}
+                </button>
+
 
                 <div className="scan-frame">
 
@@ -95,10 +117,15 @@ export default function ScannerView() {
                     {cameraOn ? "พร้อมสแกน" : "เริ่มสแกน"}
                 </h2>
 
-                <p>
+                {/* <p>
                     {cameraOn
                         ? "วาง QR Code หรือ Barcode ให้อยู่ในกรอบ"
                         : "แตะปุ่มด้านบนเพื่อเปิดกล้อง"}
+                </p> */}
+                <p>
+                    {cameraOn
+                        ? "กดปุ่ม X เพื่อปิดกล้อง"
+                        : "แตะปุ่มกล้องเพื่อเริ่มสแกน"}
                 </p>
 
             </div>
