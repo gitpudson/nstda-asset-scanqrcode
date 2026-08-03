@@ -13,9 +13,19 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.2.0",
+    "@mui/material": "^9.2.0",
+    "axios": "^1.19.0",
     "gh-pages": "^6.3.0",
+    "html5-qrcode": "^2.3.8",
+    "lucide-react": "^1.28.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-data-table-component": "^8.8.0",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2",
+    "sweetalert2": "^11.26.25"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
