@@ -28,6 +28,7 @@ export default function ScannerView() {
                     <Html5Scanner
                         onScanSuccess={(result) => {
                             setScanResult(result);
+                            setCameraOn(true);
                         }}
                     />
                 )}
