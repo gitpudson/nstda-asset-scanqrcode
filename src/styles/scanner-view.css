@@ -7,7 +7,7 @@
 ========================= */
 
 .camera-area {
-    height: 320px;
+    height: 280px;
 
     position: relative;
     overflow: hidden;
@@ -127,8 +127,8 @@
 
     /* width: 240px;
     height: 240px; */
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
 
     top: 50%;
     left: 50%;
@@ -177,8 +177,8 @@
 
     /* width: 180px;
     height: 180px; */
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
 
     object-fit: contain;
 
@@ -201,10 +201,10 @@
 .corner {
     position: absolute;
 
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 
-    border: 5px solid #4f7cff;
+    border: 4px solid #4f7cff;
 
     filter:
         drop-shadow(0 0 8px rgba(79, 124, 255, 0.7));
@@ -303,7 +303,7 @@
     position: absolute;
 
     /* bottom: 20px; */
-    bottom: 8px;
+    bottom: 12px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -321,7 +321,7 @@
 
     color: #2563eb;
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
 
     box-shadow:
@@ -365,15 +365,17 @@
 
 .scanner-status {
     text-align: center;
-
-    padding: 24px;
+    text-align: center;
+padding: 0 24px 24px;
+margin-top: -15px;
 }
 
 .status-icon {
     width: 70px;
     height: 70px;
 
-    margin: 0 auto 16px;
+    margin: 0 auto 12px;
+    
 
     border-radius: 20px;
 
