@@ -83,7 +83,8 @@
 .flash-btn {
     position: absolute;
 
-    top: 16px;
+    /* top: 16px; */
+    top: 8px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -100,7 +101,9 @@
 
     background: rgba(255, 255, 255, 0.88);
 
-    color: #2563eb;
+    /* color: #2563eb; */
+    background: rgba(255, 255, 255, .95);
+    color: #dc2626;
 
     box-shadow:
         0 8px 20px rgba(0, 0, 0, 0.12);
@@ -108,6 +111,18 @@
     cursor: pointer;
 
     z-index: 100;
+}
+
+/* ปุ่มเปิดกล้อง */
+.camera-open {
+    color: #2563eb;
+    background: #ffffff;
+}
+
+/* ปุ่มปิดกล้อง */
+.camera-close {
+    color: #ef4444;
+    background: #fee2e2;
 }
 
 .flash-btn svg {
@@ -366,8 +381,8 @@
 .scanner-status {
     text-align: center;
     text-align: center;
-padding: 0 24px 24px;
-margin-top: -15px;
+    padding: 0 24px 24px;
+    margin-top: -15px;
 }
 
 .status-icon {
@@ -375,7 +390,7 @@ margin-top: -15px;
     height: 70px;
 
     margin: 0 auto 12px;
-    
+
 
     border-radius: 20px;
 

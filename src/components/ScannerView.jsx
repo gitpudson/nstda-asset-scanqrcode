@@ -22,11 +22,21 @@ export default function ScannerView() {
         setCameraOn(true); //ถ้าต้องการให้กด "สแกนใหม่" แล้วเปิดกล้องต่อทันที true
     };
 
-    const handleToggleCamera = () => {
-        setCameraOn((prev) => !prev);
+    // const handleToggleCamera = () => {
+    //     setCameraOn((prev) => !prev);
 
+    //     if (cameraOn) {
+    //         setScanResult(null);
+    //     }
+    // };
+    const handleToggleCamera = () => {
         if (cameraOn) {
+            // กำลังปิดกล้อง
             setScanResult(null);
+            setCameraOn(false);
+        } else {
+            // กำลังเปิดกล้อง
+            setCameraOn(true);
         }
     };
 
@@ -52,7 +62,7 @@ export default function ScannerView() {
                     </button>
                 )} */}
 
-                <button
+                {/* <button
                     className="flash-btn"
                     onClick={handleToggleCamera}
                 >
@@ -61,6 +71,12 @@ export default function ScannerView() {
                     ) : (
                         <CameraAltIcon />
                     )}
+                </button> */}
+                <button
+                    className={`flash-btn ${cameraOn ? "camera-close" : "camera-open"}`}
+                    onClick={handleToggleCamera}
+                >
+                    {cameraOn ? <CloseIcon /> : <CameraAltIcon />}
                 </button>
 
 
