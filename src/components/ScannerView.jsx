@@ -8,10 +8,12 @@ import Html5Scanner from "./Html5Scanner";
 import { assets } from "../assets/assets";
 
 import "../styles/scanner-view.css";
+import AssetResultCard from "./AssetResultCard";
 
 export default function ScannerView() {
     const [cameraOn, setCameraOn] = useState(false);
     const [scanResult, setScanResult] = useState(null);
+    const [assetData, setAssetData] = useState(null);
 
     const handleStartScan = () => {
         setCameraOn(true);
@@ -22,13 +24,6 @@ export default function ScannerView() {
         setCameraOn(true); //ถ้าต้องการให้กด "สแกนใหม่" แล้วเปิดกล้องต่อทันที true
     };
 
-    // const handleToggleCamera = () => {
-    //     setCameraOn((prev) => !prev);
-
-    //     if (cameraOn) {
-    //         setScanResult(null);
-    //     }
-    // };
     const handleToggleCamera = () => {
         if (cameraOn) {
             // กำลังปิดกล้อง
@@ -41,37 +36,35 @@ export default function ScannerView() {
     };
 
     return (
+
         <div className="scanner-card">
             <div className="camera-area">
 
                 {cameraOn && (
                     <Html5Scanner
+                        // onScanSuccess={(result) => {
+                        //     setScanResult(result);
+                        //     setCameraOn(false);
+                        // }}
                         onScanSuccess={(result) => {
+
                             setScanResult(result);
+
+                            setAssetData({
+                                assetNo: result,
+                                assetName: "Notebook Dell Latitude 5450",
+                                department: "NECTEC",
+                                owner: "Pichet Pudson",
+                                location: "INC2-305",
+                                status: "ปกติ"
+                            });
+
                             setCameraOn(false);
                         }}
+
                     />
                 )}
 
-                {/* {!cameraOn && (
-                    <button
-                        className="flash-btn"
-                        onClick={handleStartScan}
-                    >
-                        <CameraAltIcon />
-                    </button>
-                )} */}
-
-                {/* <button
-                    className="flash-btn"
-                    onClick={handleToggleCamera}
-                >
-                    {cameraOn ? (
-                        <CloseIcon />
-                    ) : (
-                        <CameraAltIcon />
-                    )}
-                </button> */}
                 <button
                     className={`flash-btn ${cameraOn ? "camera-close" : "camera-open"}`}
                     onClick={handleToggleCamera}
@@ -111,18 +104,22 @@ export default function ScannerView() {
             <div className="scanner-status">
 
                 {scanResult && (
-                    <div className="result-card">
-                        <h3>ผลการสแกน</h3>
+                    // <div className="result-card">
+                    //     <h3>ผลการสแกน</h3>
 
-                        <p>{scanResult}</p>
+                    //     <p>{scanResult}</p>
 
-                        <button
-                            className="rescan-btn"
-                            onClick={handleResetScan}
-                        >
-                            สแกนใหม่
-                        </button>
-                    </div>
+                    //     <button
+                    //         className="rescan-btn"
+                    //         onClick={handleResetScan}
+                    //     >
+                    //         สแกนใหม่
+                    //     </button>
+                    // </div>
+
+                    <AssetResultCard
+                        asset={assetData}
+                    />
                 )}
 
                 {/* <div className="status-icon">
@@ -146,5 +143,6 @@ export default function ScannerView() {
 
             </div>
         </div>
+
     );
 }

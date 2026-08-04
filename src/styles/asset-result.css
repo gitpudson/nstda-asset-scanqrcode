@@ -1,0 +1,43 @@
+.asset-card {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+}
+
+.asset-header {
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #16a34a;
+
+    margin-bottom: 16px;
+}
+
+.asset-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.asset-row label {
+    color: #64748b;
+}
+
+.asset-row span {
+    font-weight: 600;
+}
+
+.status-ok {
+    color: #16a34a;
+}
