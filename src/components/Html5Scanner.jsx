@@ -83,6 +83,7 @@ export default function Html5Scanner({ onScanSuccess }) {
 //   Html5QrcodeSupportedFormats,
 // } from "html5-qrcode";
 
+
 export default function Html5Scanner({ onScanSuccess }) {
   useEffect(() => {
     let scanner = null;
@@ -124,11 +125,6 @@ export default function Html5Scanner({ onScanSuccess }) {
 
           (decodedText) => {
             onScanSuccess(decodedText);
-
-            scanner
-              .stop()
-              .then(() => scanner.clear())
-              .catch(() => {});
           },
 
           () => {}
