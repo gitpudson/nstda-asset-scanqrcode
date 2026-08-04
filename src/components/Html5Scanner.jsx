@@ -77,11 +77,11 @@ export default function Html5Scanner({ onScanSuccess }) {
 }
 */
 
-import { useEffect } from "react";
-import {
-  Html5Qrcode,
-  Html5QrcodeSupportedFormats,
-} from "html5-qrcode";
+// import { useEffect } from "react";
+// import {
+//   Html5Qrcode,
+//   Html5QrcodeSupportedFormats,
+// } from "html5-qrcode";
 
 export default function Html5Scanner({ onScanSuccess }) {
   useEffect(() => {
