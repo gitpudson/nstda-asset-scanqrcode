@@ -36,113 +36,104 @@ export default function ScannerView() {
     };
 
     return (
+        <>
+            {!scanResult && (
+                <>
+                    <div className="scanner-card">
+                        <div className="camera-area">
 
-        <div className="scanner-card">
-            <div className="camera-area">
+                            {cameraOn && (
+                                <Html5Scanner
+                                    onScanSuccess={(result) => {
+                                        setScanResult(result);
+                                        setCameraOn(false);
+                                    }}
+                                />
+                            )}
 
-                {cameraOn && (
-                    <Html5Scanner
-                        // onScanSuccess={(result) => {
-                        //     setScanResult(result);
-                        //     setCameraOn(false);
-                        // }}
-                        onScanSuccess={(result) => {
-
-                            setScanResult(result);
-
-                            setAssetData({
-                                assetNo: result,
-                                assetName: "Notebook Dell Latitude 5450",
-                                department: "NECTEC",
-                                owner: "Pichet Pudson",
-                                location: "INC2-305",
-                                status: "ปกติ"
-                            });
-
-                            setCameraOn(false);
-                        }}
-
-                    />
-                )}
-
-                <button
-                    className={`flash-btn ${cameraOn ? "camera-close" : "camera-open"}`}
-                    onClick={handleToggleCamera}
-                >
-                    {cameraOn ? <CloseIcon /> : <CameraAltIcon />}
-                </button>
+                            <button
+                                className={`flash-btn ${cameraOn ? "camera-close" : "camera-open"}`}
+                                onClick={handleToggleCamera}
+                            >
+                                {cameraOn ? <CloseIcon /> : <CameraAltIcon />}
+                            </button>
 
 
-                <div className="scan-frame">
+                            <div className="scan-frame">
 
-                    <div className="corner tl"></div>
-                    <div className="corner tr"></div>
-                    <div className="corner bl"></div>
-                    <div className="corner br"></div>
+                                <div className="corner tl"></div>
+                                <div className="corner tr"></div>
+                                <div className="corner bl"></div>
+                                <div className="corner br"></div>
 
-                    {!cameraOn && (
-                        <img
-                            src={assets.qrcode}
-                            alt="QR Code"
-                            className="sample-qr" />
-                    )
+                                {!cameraOn && (
+                                    <img
+                                        src={assets.qrcode}
+                                        alt="QR Code"
+                                        className="sample-qr" />
+                                )
 
-                    }
+                                }
 
-                    {cameraOn && (
-                        <div className="laser"></div>
-                    )}
+                                {cameraOn && (
+                                    <div className="laser"></div>
+                                )}
 
-                </div>
+                            </div>
 
-                <div className="scan-text">
-                    SMR@NECTEC
-                </div>
+                            <div className="scan-text">
+                                SMR@NECTEC
+                            </div>
 
-            </div>
+                        </div>
 
-            <div className="scanner-status">
+                        <div className="scanner-status">
 
-                {scanResult && (
-                    // <div className="result-card">
-                    //     <h3>ผลการสแกน</h3>
+                            {scanResult && (
+                                <div className="result-card">
+                                    <h3>ผลการสแกน</h3>
 
-                    //     <p>{scanResult}</p>
+                                    <p>{scanResult}</p>
 
-                    //     <button
-                    //         className="rescan-btn"
-                    //         onClick={handleResetScan}
-                    //     >
-                    //         สแกนใหม่
-                    //     </button>
-                    // </div>
+                                    <button
+                                        className="rescan-btn"
+                                        onClick={handleResetScan}
+                                    >
+                                        สแกนใหม่
+                                    </button>
+                                </div>
+                            )}
 
-                    <AssetResultCard
-                        asset={assetData}
-                    />
-                )}
-
-                {/* <div className="status-icon">
+                            {/* <div className="status-icon">
                     <CropFreeIcon />
                 </div> */}
 
-                <h2>
-                    {cameraOn ? "พร้อมสแกน" : "เริ่มสแกน"}
-                </h2>
+                            <h2>
+                                {cameraOn ? "พร้อมสแกน" : "เริ่มสแกน"}
+                            </h2>
 
-                {/* <p>
+                            {/* <p>
                     {cameraOn
                         ? "วาง QR Code หรือ Barcode ให้อยู่ในกรอบ"
                         : "แตะปุ่มด้านบนเพื่อเปิดกล้อง"}
                 </p> */}
-                <p>
-                    {cameraOn
-                        ? "กดปุ่ม X เพื่อปิดกล้อง"
-                        : "แตะปุ่มกล้องเพื่อเริ่มสแกน"}
-                </p>
+                            <p>
+                                {cameraOn
+                                    ? "กดปุ่ม X เพื่อปิดกล้อง"
+                                    : "แตะปุ่มกล้องเพื่อเริ่มสแกน"}
+                            </p>
 
-            </div>
-        </div>
+                        </div>
+                    </div>
+                </>
+
+            )}
+
+            {scanResult && (<AssetResultCard qrcode={scanResult} />)}
+
+
+        </>
+
 
     );
 }

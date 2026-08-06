@@ -9,109 +9,106 @@ const AppContextProvider = (props) => {
     const url_api_backend = "https://script.google.com/macros/s/AKfycbyg6MlP1rcgNjTaWgob_GZyQS4WiJfE56-nSmhkuk2AgAwUwK8tUeFE1LKIFAfgH5ryzA/exec";
 
     const [menu_building, setMenuBuilding] = useState("");
-    const [isLoading,setIsLoading] = useState(true);
-    const [isSaving,setIsSaving] = useState(false);
-    const [location,setLocation] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSaving, setIsSaving] = useState(false);
+    const [location, setLocation] = useState({});
 
     const fetLocation = async (org) => {
 
-    try {
+        try {
 
-        console.log("fetLocation");
+            console.log("fetLocation");
 
-        const post = {
-            function: 'getLocationNew',
-            payload: {
-                org
-            }
-        };
-
-        const response = await axios.post(
-            url_api_backend,
-            post,
-            {
-                headers: {
-                    'Content-Type': 'text/plain'
+            const post = {
+                function: 'getLocationNew',
+                payload: {
+                    org
                 }
+            };
+
+            const response = await axios.post(
+                url_api_backend,
+                post,
+                {
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    }
+                }
+            );
+
+            if (response.data.success) {
+
+                setLocation(response.data.data);
+
+                // console.log(response.data.data);
+
+                // console.log(
+                //     Object.keys(response.data.data)
+                // );
+
             }
-        );
 
-        if (response.data.success) {
+        } catch (error) {
 
-            setLocation(response.data.data);
-
-            // console.log(response.data.data);
-
-            // console.log(
-            //     Object.keys(response.data.data)
-            // );
+            console.error(
+                'Load Location Error:',
+                error
+            );
 
         }
 
-    } catch (error) {
-
-        console.error(
-            'Load Location Error:',
-            error
-        );
-
-    }
-
-};
+    };
 
     const fetAssetByAssetCode = async (qrcode) => {
 
-    try {
+        try {
 
-        console.log(qrcode);
+            console.log(qrcode);
 
-        const post = {
-            function: 'getAssetByAssetCode',
-            payload: {
-                asset_code: qrcode
-            }
-        };
-
-        setIsLoading(true);
-
-        const response = await axios.post(
-            url_api_backend,
-            post,
-            {
-                headers: {
-                    'Content-Type': 'text/plain'
+            const post = {
+                // function: 'getAssetByAssetCode',
+                function: 'getAssetByAssetCode_New_Update',
+                payload: {
+                    asset_code: qrcode
                 }
+            };
+
+            setIsLoading(true);
+
+            const response = await axios.post(
+                url_api_backend,
+                post,
+                {
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    }
+                }
+            );
+
+            if (response.data.success) {
+
+                const assetData = response.data.data;
+                await fetLocation(assetData.org_owner);
+                return assetData;
             }
-        );
 
-        if (response.data.success) {
+        } catch (error) {
 
-            const assetData = response.data.data;
+            console.error(
+                'Load Asset Error:',
+                error
+            );
 
-            // console.log(assetData.org_owner);
+        } finally {
 
-            await fetLocation(assetData.org_owner);
+            setIsLoading(false);
 
-            return assetData;
         }
 
-    } catch (error) {
-
-        console.error(
-            'Load Asset Error:',
-            error
-        );
-
-    } finally {
-
-        setIsLoading(false);
-
-    }
-
-};
+    };
 
     const fetStatus = async () => {
-      
+
 
         const post = {
             function: 'getStatus',
@@ -137,8 +134,8 @@ const AppContextProvider = (props) => {
     }
 
     const SaveData = async (post) => {
-        console.log("Save");
-        console.log(post);
+        // console.log("Save");
+        // console.log(post);
 
         setIsSaving(true);
         const response = await axios.post(`${url_api_backend}`, post,
@@ -152,14 +149,17 @@ const AppContextProvider = (props) => {
 
         if (response) {
             setIsSaving(false);
-            console.log("Success");
-            Swal.fire({
+            // console.log("Success");
+            await Swal.fire({
                 icon: "success",
                 title: "บันทึกสำเร็จ",
                 text: "ข้อมูลถูกบันทึกเรียบร้อยแล้ว",
                 timer: 2000,
                 showConfirmButton: false,
-                });
+                timerProgressBar: true
+            });
+
+            window.location.reload();
         }
 
     }
