@@ -9,6 +9,7 @@ import { assets } from "../assets/assets";
 
 import "../styles/scanner-view.css";
 import AssetResultCard from "./AssetResultCard";
+import AppHeader from "./AppHeader";
 
 export default function ScannerView() {
     const [cameraOn, setCameraOn] = useState(false);
@@ -40,7 +41,7 @@ export default function ScannerView() {
             {!scanResult && (
                 <>
                     <AppHeader />
-                    
+
                     <div className="scanner-card">
                         <div className="camera-area">
 
