@@ -5,7 +5,7 @@ import "../styles/scanner-page.css";
 export default function ScannerPage() {
   return (
     <div className="mobile-container">
-      <AppHeader />
+      {/* <AppHeader /> */}
       <ScannerView />
     </div>
   );

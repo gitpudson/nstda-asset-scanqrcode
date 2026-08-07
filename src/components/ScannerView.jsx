@@ -39,6 +39,8 @@ export default function ScannerView() {
         <>
             {!scanResult && (
                 <>
+                    <AppHeader />
+                    
                     <div className="scanner-card">
                         <div className="camera-area">
 
