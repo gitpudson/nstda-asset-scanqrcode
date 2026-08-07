@@ -49,6 +49,7 @@
 }
 
 .header-box {
+  margin: 16px;
   height: 64px;
   /* background: white; */
   display: flex;
