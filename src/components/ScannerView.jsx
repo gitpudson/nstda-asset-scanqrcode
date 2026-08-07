@@ -111,9 +111,9 @@ export default function ScannerView() {
                     <CropFreeIcon />
                 </div> */}
 
-                            <h2>
+                            {/* <h2>
                                 {cameraOn ? "พร้อมสแกน" : "เริ่มสแกน"}
-                            </h2>
+                            </h2> */}
 
                             {/* <p>
                                     {cameraOn

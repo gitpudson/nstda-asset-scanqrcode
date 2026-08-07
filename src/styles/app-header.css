@@ -57,7 +57,13 @@
 
   border-radius: 999px;
 
-  background: rgba(255,255,255,.15);
+  /* background: rgba(255,255,255,.15); */
+   background: linear-gradient(
+    180deg,
+    #4188ff,
+    /* #2563eb */
+    #eb4d25
+  );
 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
