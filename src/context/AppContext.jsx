@@ -177,7 +177,7 @@ const AppContextProvider = (props) => {
     const contextValue = {
         url_api_backend,
         isLoading,
-        dataBuilding,
+        // dataBuilding,
         menu_building,
         setMenuBuilding,
         fetAssetByAssetCode,
