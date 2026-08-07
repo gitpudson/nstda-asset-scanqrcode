@@ -1,6 +1,6 @@
 import "../styles/asset-result.css";
 
-export default function AssetResultCard({ asset }) {
+export default function AssetResultCard({ asset_no }) {
 
     return (
         <div className="asset-card">
@@ -11,10 +11,10 @@ export default function AssetResultCard({ asset }) {
 
             <div className="asset-row">
                 <label>รหัสครุภัณฑ์</label>
-                <span>{asset.assetNo}</span>
+                <span>{asset_no}</span>
             </div>
 
-            <div className="asset-row">
+            {/* <div className="asset-row">
                 <label>ชื่อรายการ</label>
                 <span>{asset.assetName}</span>
             </div>
@@ -40,7 +40,7 @@ export default function AssetResultCard({ asset }) {
                 <span className="status-ok">
                     {asset.status}
                 </span>
-            </div>
+            </div> */}
 
         </div>
     );

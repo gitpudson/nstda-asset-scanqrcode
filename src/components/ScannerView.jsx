@@ -113,10 +113,10 @@ export default function ScannerView() {
                             </h2>
 
                             {/* <p>
-                    {cameraOn
-                        ? "วาง QR Code หรือ Barcode ให้อยู่ในกรอบ"
-                        : "แตะปุ่มด้านบนเพื่อเปิดกล้อง"}
-                </p> */}
+                                    {cameraOn
+                                        ? "วาง QR Code หรือ Barcode ให้อยู่ในกรอบ"
+                                        : "แตะปุ่มด้านบนเพื่อเปิดกล้อง"}
+                                </p> */}
                             <p>
                                 {cameraOn
                                     ? "กดปุ่ม X เพื่อปิดกล้อง"
