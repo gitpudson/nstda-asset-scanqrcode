@@ -1,6 +1,6 @@
 import "../styles/asset-result.css";
 
-export default function AssetResultCard({ asset_no }) {
+export default function AssetResultCard({ qrcode }) {
 
     return (
         <div className="asset-card">
@@ -11,7 +11,7 @@ export default function AssetResultCard({ asset_no }) {
 
             <div className="asset-row">
                 <label>รหัสครุภัณฑ์</label>
-                <span>{asset_no}</span>
+                <span>{qrcode}</span>
             </div>
 
             {/* <div className="asset-row">
