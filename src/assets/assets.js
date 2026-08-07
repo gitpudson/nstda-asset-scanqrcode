@@ -6,6 +6,7 @@ import mtec from './Mtec.jpeg';
 import nanotec from './Nanotec.jpeg';
 import nectec from './Nectec.jpeg';
 import qrcode from './qrcode.jpg';
+import spinner from './spinner.svg';
 
 
 
@@ -19,6 +20,7 @@ export const assets = {
     nanotec,
     nectec,
     qrcode,
+    spinner
 }
 
 const mockAsset = {

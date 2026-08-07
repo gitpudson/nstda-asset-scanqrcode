@@ -88,7 +88,11 @@ const AppContextProvider = (props) => {
             if (response.data.success) {
 
                 const assetData = response.data.data;
+
+                // console.log(assetData.org_owner);
+
                 await fetLocation(assetData.org_owner);
+
                 return assetData;
             }
 
@@ -134,8 +138,8 @@ const AppContextProvider = (props) => {
     }
 
     const SaveData = async (post) => {
-        // console.log("Save");
-        // console.log(post);
+        console.log("Save");
+        console.log(post);
 
         setIsSaving(true);
         const response = await axios.post(`${url_api_backend}`, post,
@@ -169,8 +173,6 @@ const AppContextProvider = (props) => {
         console.log("location");
         console.log(location);
     }, [location]);
-
-
 
     const contextValue = {
         url_api_backend,
