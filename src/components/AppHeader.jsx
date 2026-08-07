@@ -6,7 +6,7 @@ export default function AppHeader() {
     <div className="header">
       
       <div className="budget-chip">
-        <h2>ระบบตรวจสอบครุภัณฑ์</h2>
+        <h3>ระบบตรวจสอบครุภัณฑ์</h3>
       </div>
 
       <div className="budget-chip1">
