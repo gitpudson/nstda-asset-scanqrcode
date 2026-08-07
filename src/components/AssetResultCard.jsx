@@ -321,11 +321,11 @@ export default function AssetResultCard({ qrcode }) {
                 //     </Typography>
                 //     <img className='loading' src={assets.spinner} alt="" />
                 // </div>
-                <Box
+                <Box 
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'center',
+                        // justifyContent: 'center',
                         alignItems: 'center',
                         height: '100vh',
                         textAlign: 'center'
@@ -397,7 +397,7 @@ export default function AssetResultCard({ qrcode }) {
                     {/* Form */}
                     <Card className="form-card">
 
-                        <Typography className="label">
+                        <Typography className="label-asset">
                             รหัสครุภัณฑ์
                         </Typography>
 
@@ -407,7 +407,7 @@ export default function AssetResultCard({ qrcode }) {
                             value={formData.asset_code}
                         />
 
-                        <Typography className="label">
+                        <Typography className="label-asset">
                             รายการครุภัณฑ์
                         </Typography>
 
@@ -420,7 +420,7 @@ export default function AssetResultCard({ qrcode }) {
 
                         {formData?.new_building === "" ?
                             <>
-                                <Typography className="label">
+                                <Typography className="label-asset">
                                     ตำแหน่งที่ตั้งปัจจุบัน
                                 </Typography>
                                 <Box className="asset-box">
@@ -441,7 +441,7 @@ export default function AssetResultCard({ qrcode }) {
                             : <></>
                         }
 
-                        <Typography className="label">
+                        <Typography className="label-asset">
                             อาคาร
                         </Typography>
 
@@ -474,7 +474,7 @@ export default function AssetResultCard({ qrcode }) {
                                 ))}
                         </TextField>
 
-                        <Typography className="label">
+                        <Typography className="label-asset">
                             ชั้น
                         </Typography>
 
@@ -510,7 +510,7 @@ export default function AssetResultCard({ qrcode }) {
 
                         </TextField>
 
-                        <Typography className="label">
+                        <Typography className="label-asset">
                             ห้อง
                         </Typography>
 
@@ -534,7 +534,7 @@ export default function AssetResultCard({ qrcode }) {
                                 ))}
                         </TextField>
 
-                        <Typography className="label">
+                        <Typography className="label-asset">
                             สถานะ
                         </Typography>
 
@@ -556,7 +556,7 @@ export default function AssetResultCard({ qrcode }) {
                             ))}
                         </TextField>
 
-                        <Typography className="label">
+                        <Typography className="label-asset">
                             รูปภาพ
                         </Typography>
 
@@ -591,7 +591,7 @@ export default function AssetResultCard({ qrcode }) {
 
                         {
                             formData.updated_at !== "" ? (
-                                <Typography className="label">
+                                <Typography className="label-asset">
                                     แก้ไขล่าสุด {formatDate(formData.updated_at)}
                                 </Typography>
                             ) : ""
@@ -606,7 +606,7 @@ export default function AssetResultCard({ qrcode }) {
                                         src={item.preview}
                                         // alt={`preview-${index}`}
                                         alt=""
-                                        className="preview"
+                                        className="preview-img"
                                     />
                                 ))}
                         </Box>
