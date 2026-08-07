@@ -619,7 +619,7 @@ export default function AssetResultCard({ qrcode }) {
                         <Button
                             fullWidth
                             //   startIcon={<SaveIcon />}
-                            startIcon={isSaving ? <img className='loading-save' src="./spinner.svg" alt="" /> : <SaveIcon />}
+                            startIcon={isSaving ? <img className='loading-save' src={assets.spinner} alt="" /> : <SaveIcon />}
                             variant="contained"
                             onClick={handleSave}
                             className="save-btn"
