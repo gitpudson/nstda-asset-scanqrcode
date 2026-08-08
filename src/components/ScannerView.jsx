@@ -84,9 +84,17 @@ export default function ScannerView() {
 
                             </div>
 
-                            <div className="scan-text">
+                            {!cameraOn
+                                ? (
+                                    <div className="scan-text">
+                                        SMR@NECTEC
+                                    </div>
+                                )
+                                : <></>}
+
+                            {/* <div className="scan-text">
                                 SMR@NECTEC
-                            </div>
+                            </div> */}
 
                         </div>
 
