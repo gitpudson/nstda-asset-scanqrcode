@@ -1,5 +1,5 @@
 .scanner-card {
-    padding: 20px;
+    padding: 16px;
 }
 
 /* =========================
@@ -345,10 +345,14 @@ outline: none;
 
     border: 1px solid rgba(255, 255, 255, 0.4);
 
-    color: #2563eb;
+    /* color: #2563eb;
 
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 600; */
+    font-size: 14px;
+    color: #f80808;
+    font-family: Segoe UI;
+    font-weight: 500 !important;
 
     box-shadow:
         0 4px 15px rgba(0, 0, 0, 0.08);

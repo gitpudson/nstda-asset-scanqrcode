@@ -21,15 +21,8 @@ body {
   box-shadow:
     0 0 30px rgba(0,0,0,.08);
 }
-/* .mobile-container {
-  width: 100%;
-  max-width: 430px;
-  min-height: 100vh;
-  margin: auto;
-  background: #f7f9fc;
-} */
 
-.mobile-container {
+/* .mobile-container {
   width: 100%;
   max-width: 430px;
   min-height: 100vh;
@@ -37,7 +30,7 @@ body {
   margin: 0 auto;
 
   background: #f8fafc;
-}
+} */
 
 .scanner-status {
   padding: 24px;
