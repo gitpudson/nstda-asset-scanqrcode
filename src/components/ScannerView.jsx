@@ -140,8 +140,8 @@ export default function ScannerView() {
 
             )}
 
-            {scanResult && (<AssetResultCard qrcode={scanResult} />)}
-            {/* <AssetResultCard qrcode={"9000-001-0001-000004262"} /> */}
+            {/* {scanResult && (<AssetResultCard qrcode={scanResult} />)} */}
+            <AssetResultCard qrcode={"9000-001-0001-000004262"} />
 
 
         </>

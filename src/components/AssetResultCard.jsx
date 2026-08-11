@@ -602,13 +602,24 @@ export default function AssetResultCard({ qrcode }) {
                                 {images
                                     .filter((item) => item.preview)
                                     .map((item, index) => (
-                                        <img
+                                        // <img
+                                        //     key={index}
+                                        //     src={item.preview}
+                                        //     // alt={`preview-${index}`}
+                                        //     alt=""
+                                        //     className="preview-img"
+                                        // />
+                                        <img 
                                             key={index}
                                             src={item.preview}
-                                            // alt={`preview-${index}`}
-                                            alt=""
-                                            className="preview-img"
-                                        />
+                                            alt="ไม่สามารถโหลดรูปภาพได้"
+                                            style={{
+                                                width: "100%",
+                                                height: "auto",
+                                                display: "block",
+                                                marginTop: "10px",
+                                                borderRadius: "8px"
+                                            }} />
                                     ))}
                             </Box>
 
@@ -633,11 +644,11 @@ export default function AssetResultCard({ qrcode }) {
                         {/* <p>
                         Created by smr@nectec
                     </p> */}
-                    <Box className="created-by">
-                        <Typography variant="button" fontWeight={300}>
-                            Developed by SMR@NECTEC
-                        </Typography>
-                    </Box>
+                        <Box className="created-by">
+                            <Typography variant="button" fontWeight={300}>
+                                Developed by SMR@NECTEC
+                            </Typography>
+                        </Box>
 
                     </Box>
 
@@ -646,7 +657,7 @@ export default function AssetResultCard({ qrcode }) {
                             Created by smr@nectec
                         </Typography>
                     </Box> */}
-                    
+
                 </>
 
             )
