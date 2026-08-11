@@ -321,7 +321,7 @@ export default function AssetResultCard({ qrcode }) {
                 //     </Typography>
                 //     <img className='loading' src={assets.spinner} alt="" />
                 // </div>
-                <Box 
+                <Box
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -348,288 +348,306 @@ export default function AssetResultCard({ qrcode }) {
             }
 
             {(!isLoading && formData.org_owner != "") && (
-                <Box className="page">
-                    {/* Header */}
-                    <Box className="header-box">
-                        <IconButton>
-                            {/* <ArrowBackIcon /> */}
-                            <img className="logo-org" src={formData.org_owner === "สก." ? assets.co :
-                                formData.org_owner === "ศอ." ? assets.nectec :
-                                    formData.org_owner === "ศช." ? assets.biotec :
-                                        formData.org_owner === "ศว." ? assets.mtec :
-                                            formData.org_owner === "ศล." ? assets.entec :
-                                                formData.org_owner === "ศน." ? assets.nanotec : ""
+                <>
+                    <Box className="page">
+                        {/* Header */}
+                        <Box className="header-box">
+                            <IconButton>
+                                {/* <ArrowBackIcon /> */}
+                                <img className="logo-org" src={formData.org_owner === "สก." ? assets.co :
+                                    formData.org_owner === "ศอ." ? assets.nectec :
+                                        formData.org_owner === "ศช." ? assets.biotec :
+                                            formData.org_owner === "ศว." ? assets.mtec :
+                                                formData.org_owner === "ศล." ? assets.entec :
+                                                    formData.org_owner === "ศน." ? assets.nanotec : ""
 
-                            } />
-                        </IconButton>
+                                } />
+                            </IconButton>
 
-                        <Typography variant="h6" fontWeight={300}>
-                            รายการผู้ถือครองครุภัณฑ์
-                        </Typography>
-                    </Box>
-
-                    {/* Employee */}
-                    <Card className="employee-card">
-                        <Avatar
-                            src={imgPerson}
-                            sx={{
-                                width: 75,
-                                height: 75,
-                                bgcolor: "#ff6b00",
-                            }}
-                        />
-
-                        <Box>
-                            <Typography fontWeight={700}>
-                                {formData.person_name}
-                            </Typography>
-
-                            <Typography color="text.secondary">
-                                รหัสพนักงาน {formData.person_key}
-                            </Typography>
-
-                            <Typography color="text.secondary">
-                                หน่วยงาน {formData.org_owner}
+                            <Typography variant="h6" fontWeight={300}>
+                                รายการผู้ถือครองครุภัณฑ์
                             </Typography>
                         </Box>
-                    </Card>
 
-                    {/* Form */}
-                    <Card className="form-card">
-
-                        <Typography className="label-asset">
-                            รหัสครุภัณฑ์
-                        </Typography>
-
-                        <TextField
-                            fullWidth
-                            size="small"
-                            value={formData.asset_code}
-                        />
-
-                        <Typography className="label-asset">
-                            รายการครุภัณฑ์
-                        </Typography>
-
-                        <Box className="asset-box">
-                            <Typography fontWeight={700}>
-                                {formData.asset_name}
-                            </Typography>
-
-                        </Box>
-
-                        {formData?.new_building === "" ?
-                            <>
-                                <Typography className="label-asset">
-                                    ตำแหน่งที่ตั้งปัจจุบัน
-                                </Typography>
-                                <Box className="asset-box">
-                                    <Typography fontWeight={700}>
-                                        อาคาร : {formData?.build || "-"}
-                                    </Typography>
-
-                                    <Typography fontWeight={700}>
-                                        ชั้น : {formData?.floor || "-"}
-                                    </Typography>
-
-                                    <Typography fontWeight={700}>
-                                        ห้อง : {formData?.room || "-"}
-                                    </Typography>
-                                </Box>
-                            </>
-
-                            : <></>
-                        }
-
-                        <Typography className="label-asset">
-                            อาคาร
-                        </Typography>
-
-                        <TextField
-                            select
-                            fullWidth
-                            // label="Building"
-                            value={formData.new_building}
-                            onChange={(e) =>
-                                setFormData(prev => ({
-                                    ...prev,
-                                    new_building: e.target.value,
-                                    new_floor: "",
-                                    new_room: ""
-                                }))
-                            }
-                        >
-
-                            {Object.keys(location)
-                                .sort((a, b) =>
-                                    a.localeCompare(b, "en", {
-                                        numeric: true,
-                                        sensitivity: "base",
-                                    })
-                                )
-                                .map(item => (
-                                    <MenuItem key={item} value={item}>
-                                        {item}
-                                    </MenuItem>
-                                ))}
-                        </TextField>
-
-                        <Typography className="label-asset">
-                            ชั้น
-                        </Typography>
-
-                        <TextField
-                            select
-                            fullWidth
-                            // label="Floor"
-                            value={formData.new_floor}
-                            onChange={(e) =>
-                                setFormData(prev => ({
-                                    ...prev,
-                                    new_floor: e.target.value,
-                                    new_room: ""
-                                }))
-                            }
-                        >
-
-                            {Object.keys(location[formData.new_building] || {})
-                                .sort((a, b) => {
-                                    if (a === "ไม่มีชั้น") return -1;
-                                    if (b === "ไม่มีชั้น") return 1;
-
-                                    return a.localeCompare(b, "en", {
-                                        numeric: true,
-                                        sensitivity: "base"
-                                    });
-                                })
-                                .map(item => (
-                                    <MenuItem key={item} value={item}>
-                                        {item}
-                                    </MenuItem>
-                                ))}
-
-                        </TextField>
-
-                        <Typography className="label-asset">
-                            ห้อง
-                        </Typography>
-
-                        <TextField
-                            select
-                            fullWidth
-                            // label="Room"
-                            value={formData.new_room}
-                            onChange={(e) =>
-                                setFormData(prev => ({
-                                    ...prev,
-                                    new_room: e.target.value
-                                }))
-                            }
-                        >
-                            {(location[formData.new_building]?.[formData.new_floor] || [])
-                                .map(item => (
-                                    <MenuItem key={item} value={item}>
-                                        {item}
-                                    </MenuItem>
-                                ))}
-                        </TextField>
-
-                        <Typography className="label-asset">
-                            สถานะ
-                        </Typography>
-
-                        <TextField
-                            select
-                            fullWidth
-                            size="small"
-                            name="new_status"
-                            value={formData.new_status || ""}
-                            onChange={handleChange}
-                        >
-                            {statusList.map((status) => (
-                                <MenuItem
-                                    key={status}
-                                    value={status}
-                                >
-                                    {status}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-
-                        <Typography className="label-asset">
-                            รูปภาพ
-                        </Typography>
-
-                        <label className="upload-box">
-                            <CameraAltIcon
+                        {/* Employee */}
+                        <Card className="employee-card">
+                            <Avatar
+                                src={imgPerson}
                                 sx={{
-                                    fontSize: 40,
-                                    color: "#ff6b00",
+                                    width: 75,
+                                    height: 75,
+                                    bgcolor: "#ff6b00",
                                 }}
                             />
 
-                            <Typography>
-                                แตะเพื่อถ่ายรูป
-                            </Typography>
-
-                            <Typography
-                                variant="caption"
-                                color="text.secondary"
-                            >
-                                {/* หรือเลือกจากแกลเลอรี่ */}
-                            </Typography>
-
-                            <input
-                                type="file"
-                                hidden
-                                multiple
-                                accept="image/*"
-                                capture="environment"
-                                onChange={handleImage}
-                            />
-                        </label>
-
-                        {
-                            formData.updated_at !== "" ? (
-                                <Typography className="label-asset">
-                                    แก้ไขล่าสุด {formatDate(formData.updated_at)}
+                            <Box>
+                                <Typography fontWeight={700}>
+                                    {formData.person_name}
                                 </Typography>
-                            ) : ""
-                        }
 
-                        <Box className="gallery">
-                            {images
-                                .filter((item) => item.preview)
-                                .map((item, index) => (
-                                    <img
-                                        key={index}
-                                        src={item.preview}
-                                        // alt={`preview-${index}`}
-                                        alt=""
-                                        className="preview-img"
-                                    />
+                                <Typography color="text.secondary">
+                                    รหัสพนักงาน {formData.person_key}
+                                </Typography>
+
+                                <Typography color="text.secondary">
+                                    หน่วยงาน {formData.org_owner}
+                                </Typography>
+                            </Box>
+                        </Card>
+
+                        {/* Form */}
+                        <Card className="form-card">
+
+                            <Typography className="label-asset">
+                                รหัสครุภัณฑ์
+                            </Typography>
+
+                            <TextField
+                                fullWidth
+                                size="small"
+                                value={formData.asset_code}
+                            />
+
+                            <Typography className="label-asset">
+                                รายการครุภัณฑ์
+                            </Typography>
+
+                            <Box className="asset-box">
+                                <Typography fontWeight={700}>
+                                    {formData.asset_name}
+                                </Typography>
+
+                            </Box>
+
+                            {formData?.new_building === "" ?
+                                <>
+                                    <Typography className="label-asset">
+                                        ตำแหน่งที่ตั้งปัจจุบัน
+                                    </Typography>
+                                    <Box className="asset-box">
+                                        <Typography fontWeight={700}>
+                                            อาคาร : {formData?.build || "-"}
+                                        </Typography>
+
+                                        <Typography fontWeight={700}>
+                                            ชั้น : {formData?.floor || "-"}
+                                        </Typography>
+
+                                        <Typography fontWeight={700}>
+                                            ห้อง : {formData?.room || "-"}
+                                        </Typography>
+                                    </Box>
+                                </>
+
+                                : <></>
+                            }
+
+                            <Typography className="label-asset">
+                                อาคาร
+                            </Typography>
+
+                            <TextField
+                                select
+                                fullWidth
+                                // label="Building"
+                                value={formData.new_building}
+                                onChange={(e) =>
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        new_building: e.target.value,
+                                        new_floor: "",
+                                        new_room: ""
+                                    }))
+                                }
+                            >
+
+                                {Object.keys(location)
+                                    .sort((a, b) =>
+                                        a.localeCompare(b, "en", {
+                                            numeric: true,
+                                            sensitivity: "base",
+                                        })
+                                    )
+                                    .map(item => (
+                                        <MenuItem key={item} value={item}>
+                                            {item}
+                                        </MenuItem>
+                                    ))}
+                            </TextField>
+
+                            <Typography className="label-asset">
+                                ชั้น
+                            </Typography>
+
+                            <TextField
+                                select
+                                fullWidth
+                                // label="Floor"
+                                value={formData.new_floor}
+                                onChange={(e) =>
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        new_floor: e.target.value,
+                                        new_room: ""
+                                    }))
+                                }
+                            >
+
+                                {Object.keys(location[formData.new_building] || {})
+                                    .sort((a, b) => {
+                                        if (a === "ไม่มีชั้น") return -1;
+                                        if (b === "ไม่มีชั้น") return 1;
+
+                                        return a.localeCompare(b, "en", {
+                                            numeric: true,
+                                            sensitivity: "base"
+                                        });
+                                    })
+                                    .map(item => (
+                                        <MenuItem key={item} value={item}>
+                                            {item}
+                                        </MenuItem>
+                                    ))}
+
+                            </TextField>
+
+                            <Typography className="label-asset">
+                                ห้อง
+                            </Typography>
+
+                            <TextField
+                                select
+                                fullWidth
+                                // label="Room"
+                                value={formData.new_room}
+                                onChange={(e) =>
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        new_room: e.target.value
+                                    }))
+                                }
+                            >
+                                {(location[formData.new_building]?.[formData.new_floor] || [])
+                                    .map(item => (
+                                        <MenuItem key={item} value={item}>
+                                            {item}
+                                        </MenuItem>
+                                    ))}
+                            </TextField>
+
+                            <Typography className="label-asset">
+                                สถานะ
+                            </Typography>
+
+                            <TextField
+                                select
+                                fullWidth
+                                size="small"
+                                name="new_status"
+                                value={formData.new_status || ""}
+                                onChange={handleChange}
+                            >
+                                {statusList.map((status) => (
+                                    <MenuItem
+                                        key={status}
+                                        value={status}
+                                    >
+                                        {status}
+                                    </MenuItem>
                                 ))}
+                            </TextField>
+
+                            <Typography className="label-asset">
+                                รูปภาพ
+                            </Typography>
+
+                            <label className="upload-box">
+                                <CameraAltIcon
+                                    sx={{
+                                        fontSize: 40,
+                                        color: "#ff6b00",
+                                    }}
+                                />
+
+                                <Typography>
+                                    แตะเพื่อถ่ายรูป
+                                </Typography>
+
+                                <Typography
+                                    variant="caption"
+                                    color="text.secondary"
+                                >
+                                    {/* หรือเลือกจากแกลเลอรี่ */}
+                                </Typography>
+
+                                <input
+                                    type="file"
+                                    hidden
+                                    multiple
+                                    accept="image/*"
+                                    capture="environment"
+                                    onChange={handleImage}
+                                />
+                            </label>
+
+                            {
+                                formData.updated_at !== "" ? (
+                                    <Typography className="label-asset">
+                                        แก้ไขล่าสุด {formatDate(formData.updated_at)}
+                                    </Typography>
+                                ) : ""
+                            }
+
+                            <Box className="gallery">
+                                {images
+                                    .filter((item) => item.preview)
+                                    .map((item, index) => (
+                                        <img
+                                            key={index}
+                                            src={item.preview}
+                                            // alt={`preview-${index}`}
+                                            alt=""
+                                            className="preview-img"
+                                        />
+                                    ))}
+                            </Box>
+
+
+                        </Card>
+
+                        {/* Save */}
+                        <Box className="footer">
+                            <Button
+                                fullWidth
+                                //   startIcon={<SaveIcon />}
+                                startIcon={isSaving ? <img className='loading-save' src={assets.spinner} alt="" /> : <SaveIcon />}
+                                variant="contained"
+                                onClick={handleSave}
+                                className="save-btn"
+                                disabled={isSaving}
+                            >
+                                {isSaving ? "Saving....." : "Save"}
+                            </Button>
                         </Box>
 
-
-                    </Card>
-
-                    {/* Save */}
-                    <Box className="footer">
-                        <Button
-                            fullWidth
-                            //   startIcon={<SaveIcon />}
-                            startIcon={isSaving ? <img className='loading-save' src={assets.spinner} alt="" /> : <SaveIcon />}
-                            variant="contained"
-                            onClick={handleSave}
-                            className="save-btn"
-                            disabled={isSaving}
-                        >
-                            {isSaving ? "Saving....." : "Save"}
-                        </Button>
+                        {/* <p>
+                        Created by smr@nectec
+                    </p> */}
+                    <Box className="created-by">
+                        <Typography variant="button" fontWeight={300}>
+                            Developed by SMR@NECTEC
+                        </Typography>
                     </Box>
 
-                </Box>
+                    </Box>
+
+                    {/* <Box className="header-box1">
+                        <Typography variant="h6" fontWeight={300}>
+                            Created by smr@nectec
+                        </Typography>
+                    </Box> */}
+                    
+                </>
 
             )
 
