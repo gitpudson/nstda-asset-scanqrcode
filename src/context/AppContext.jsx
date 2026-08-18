@@ -63,7 +63,7 @@ const AppContextProvider = (props) => {
 
         try {
 
-            console.log(qrcode);
+            // console.log(qrcode);
 
             const post = {
                 // function: 'getAssetByAssetCode',
@@ -138,8 +138,8 @@ const AppContextProvider = (props) => {
     }
 
     const SaveData = async (post) => {
-        console.log("Save");
-        console.log(post);
+        // console.log("Save");
+        // console.log(post);
 
         setIsSaving(true);
         const response = await axios.post(`${url_api_backend}`, post,
@@ -169,10 +169,10 @@ const AppContextProvider = (props) => {
     }
 
 
-    useEffect(() => {
-        console.log("location");
-        console.log(location);
-    }, [location]);
+    // useEffect(() => {
+    //     console.log("location");
+    //     console.log(location);
+    // }, [location]);
 
     const contextValue = {
         url_api_backend,

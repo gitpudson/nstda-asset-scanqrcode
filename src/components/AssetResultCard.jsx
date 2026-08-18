@@ -24,7 +24,7 @@ export default function AssetResultCard({ qrcode }) {
 
     //ดึง Building
     const buildings = Object.keys(location);
-    console.log(buildings);
+    // console.log(buildings);
 
     //ดึง Floor เมื่อเลือก Building
     const getFloors = (building) => {
@@ -237,7 +237,7 @@ export default function AssetResultCard({ qrcode }) {
 
                 const asset = await fetAssetByAssetCode(qrcode);
 
-                // console.log(asset);
+                // console.log("fetAssetByAssetCode",asset);
 
                 if (!asset || !asset.success) {
 
@@ -394,7 +394,68 @@ export default function AssetResultCard({ qrcode }) {
                                     หน่วยงาน {formData.org_owner}
                                 </Typography>
                             </Box>
+
                         </Card>
+
+                        <Box
+                            sx={{
+                                mt: 1,
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    px: 2.5,
+                                    py: 0.6,
+                                    borderRadius: "20px",
+                                    fontWeight: 600,
+                                    fontSize: "0.9rem",
+                                    backgroundColor:
+                                        formData.updated_at
+                                            ? "#16A34A"
+                                            : "#E5E7EB",
+                                    color:
+                                        formData.updated_at
+                                            ? "#FFFFFF"
+                                            : "#666666",
+                                    border:
+                                        formData.updated_at
+                                            ? "none"
+                                            : "1px solid #BDBDBD",
+                                    boxShadow:
+                                        formData.updated_at
+                                            ? "0 2px 4px rgba(0,0,0,0.15)"
+                                            : "none",
+                                }}
+                            >
+                                {
+                                    formData.updated_at
+                                        ? "✅ ตรวจสอบแล้ว"
+                                        : "⚪ ยังไม่ตรวจ"
+                                }
+                            </Box>
+
+                            {
+                                formData.updated_at && (
+                                    <Typography
+                                        variant="subtitle1"
+                                        sx={{
+                                            mt: 0.8,
+                                            color: "#666",
+                                            textAlign: "center",
+                                        }}
+                                    >
+                                        ตรวจล่าสุด :
+                                        {" "}
+                                        {new Date(
+                                            formData.updated_at
+                                        ).toLocaleString("th-TH")}
+                                    </Typography>
+                                )
+                            }
+                        </Box>
 
                         {/* Form */}
                         <Card className="form-card">
