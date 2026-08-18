@@ -72,7 +72,8 @@ export default function AssetResultCard({ qrcode }) {
         new_status: "",
         updated_at: "",
         person_key: "",
-        row_number: 0
+        row_number: 0,
+        remark: "",
     });
 
     const handleChange = (e) => {
@@ -212,7 +213,7 @@ export default function AssetResultCard({ qrcode }) {
                 },
             };
 
-           await SaveData(data);
+            await SaveData(data);
             // alert("บันทึกสำเร็จ");
 
         } catch (error) {
@@ -557,6 +558,32 @@ export default function AssetResultCard({ qrcode }) {
                                 ))}
                             </TextField>
 
+                            <Box sx={{ mt: 2 }}>
+                                <Typography
+                                    sx={{
+                                        mb: 1,
+                                        color: "#ff6b00",
+                                        fontWeight: 500,
+                                    }}
+                                >
+                                    หมายเหตุ
+                                </Typography>
+
+                                <TextField
+                                    fullWidth
+                                    multiline
+                                    rows={3}
+                                    placeholder="ระบุรายละเอียดเพิ่มเติม (ถ้ามี)"
+                                    value={formData.remark || ""}
+                                    onChange={(e) =>
+                                        setFormData((prev) => ({
+                                            ...prev,
+                                            remark: e.target.value,
+                                        }))
+                                    }
+                                />
+                            </Box>
+
                             <Typography className="label-asset">
                                 รูปภาพ
                             </Typography>
@@ -609,7 +636,7 @@ export default function AssetResultCard({ qrcode }) {
                                         //     alt=""
                                         //     className="preview-img"
                                         // />
-                                        <img 
+                                        <img
                                             key={index}
                                             src={item.preview}
                                             alt="ไม่สามารถโหลดรูปภาพได้"
