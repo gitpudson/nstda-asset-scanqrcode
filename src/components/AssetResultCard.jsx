@@ -158,16 +158,16 @@ export default function AssetResultCard({ qrcode }) {
 
     const handleSave = async () => {
 
-        if (!images || images.length === 0) {
-            Swal.fire({
-                icon: "warning",
-                title: "ไม่พบรูปภาพ",
-                // text: "กรุณาถ่ายรูปหรือแนบรูปภาพอย่างน้อย 1 รูป",
-                text: "กรุณาถ่ายรูปหรือแนบรูปภาพก่อน",
-                confirmButtonText: "ตกลง",
-            });
-            return;
-        }
+        // if (!images || images.length === 0) {
+        //     Swal.fire({
+        //         icon: "warning",
+        //         title: "ไม่พบรูปภาพ",
+        //         // text: "กรุณาถ่ายรูปหรือแนบรูปภาพอย่างน้อย 1 รูป",
+        //         text: "กรุณาถ่ายรูปหรือแนบรูปภาพก่อน",
+        //         confirmButtonText: "ตกลง",
+        //     });
+        //     return;
+        // }
 
         const result = await Swal.fire({
             title: "ยืนยันการบันทึก?",
@@ -212,7 +212,7 @@ export default function AssetResultCard({ qrcode }) {
                 },
             };
 
-            SaveData(data);
+           await SaveData(data);
             // alert("บันทึกสำเร็จ");
 
         } catch (error) {
