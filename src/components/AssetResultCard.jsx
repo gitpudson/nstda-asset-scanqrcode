@@ -159,6 +159,48 @@ export default function AssetResultCard({ qrcode }) {
 
     const handleSave = async () => {
 
+        // บังคับเลือกอาคาร
+        if (!formData.new_building) {
+
+        await Swal.fire({
+        icon: "warning",
+        title: "กรุณาระบุอาคาร",
+        text: "จำเป็นต้องเลือกอาคารก่อนบันทึกข้อมูล",
+        confirmButtonText: "ตกลง",
+        });
+
+        return;
+
+        }
+
+        // บังคับเลือกชั้น
+        if (!formData.new_floor) {
+
+        await Swal.fire({
+        icon: "warning",
+        title: "กรุณาระบุชั้น",
+        text: "จำเป็นต้องเลือกชั้นก่อนบันทึกข้อมูล",
+        confirmButtonText: "ตกลง",
+        });
+
+        return;
+
+        }
+
+        // บังคับเลือกสถานะ
+        if (!formData.new_status) {
+
+        await Swal.fire({
+        icon: "warning",
+        title: "กรุณาระบุสถานะ",
+        text: "จำเป็นต้องเลือกสถานะครุภัณฑ์ก่อนบันทึกข้อมูล",
+        confirmButtonText: "ตกลง",
+        });
+
+        return;
+
+        }
+
         // if (!images || images.length === 0) {
         //     Swal.fire({
         //         icon: "warning",
@@ -310,18 +352,6 @@ export default function AssetResultCard({ qrcode }) {
     return (
         <>
             {(isLoading) &&
-                // <div>
-                //     <Typography variant="h6" fontWeight={500}>
-                //         กำลังค้นหาหมายเลขครุภัณฑ์
-                //     </Typography>
-                //     <Typography variant="h6" fontWeight={500} className="label-asset">
-                //         {qrcode}
-                //     </Typography>
-                //     <Typography variant="h6" fontWeight={500}>
-                //         กรุณารอสักครู่.....
-                //     </Typography>
-                //     <img className='loading' src={assets.spinner} alt="" />
-                // </div>
                 <Box
                     sx={{
                         display: 'flex',
@@ -505,7 +535,7 @@ export default function AssetResultCard({ qrcode }) {
                             }
 
                             <Typography className="label-asset">
-                                อาคาร
+                                อาคาร <span style={{ color: "red" }}>*</span>
                             </Typography>
 
                             <TextField
@@ -538,7 +568,7 @@ export default function AssetResultCard({ qrcode }) {
                             </TextField>
 
                             <Typography className="label-asset">
-                                ชั้น
+                                ชั้น <span style={{ color: "red" }}>*</span>
                             </Typography>
 
                             <TextField
@@ -576,6 +606,13 @@ export default function AssetResultCard({ qrcode }) {
                             <Typography className="label-asset">
                                 ห้อง
                             </Typography>
+                            <Typography
+                                variant="caption"
+                                color="text.secondary"
+                            >
+                                *หากไม่มีห้อง หรืออยู่นอกห้อง
+                                สามารถระบุรายละเอียดเพิ่มเติมในช่องหมายเหตุได้
+                            </Typography>
 
                             <TextField
                                 select
@@ -598,7 +635,7 @@ export default function AssetResultCard({ qrcode }) {
                             </TextField>
 
                             <Typography className="label-asset">
-                                สถานะ
+                                สถานะ <span style={{ color: "red" }}>*</span>
                             </Typography>
 
                             <TextField
@@ -690,13 +727,6 @@ export default function AssetResultCard({ qrcode }) {
                                 {images
                                     .filter((item) => item.preview)
                                     .map((item, index) => (
-                                        // <img
-                                        //     key={index}
-                                        //     src={item.preview}
-                                        //     // alt={`preview-${index}`}
-                                        //     alt=""
-                                        //     className="preview-img"
-                                        // />
                                         <img
                                             key={index}
                                             src={item.preview}
@@ -734,17 +764,11 @@ export default function AssetResultCard({ qrcode }) {
                     </p> */}
                         <Box className="created-by">
                             <Typography variant="button" fontWeight={300}>
-                                Developed by SMR@NECTEC
+                                Developed by IIARG/SMR@NECTEC
                             </Typography>
                         </Box>
 
                     </Box>
-
-                    {/* <Box className="header-box1">
-                        <Typography variant="h6" fontWeight={300}>
-                            Created by smr@nectec
-                        </Typography>
-                    </Box> */}
 
                 </>
 
