@@ -4,6 +4,7 @@ import CropFreeIcon from "@mui/icons-material/CropFree";
 // import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
+import Swal from "sweetalert2";
 
 import Html5Scanner from "./Html5Scanner";
 import { assets } from "../assets/assets";
@@ -68,9 +69,15 @@ export default function ScannerView() {
             setSearchResults([])
             if (!personKey) {
 
-                alert(
-                    "กรุณาระบุรหัสพนักงาน"
-                );
+                // alert(
+                //     "กรุณาระบุรหัสพนักงาน"
+                // );
+                Swal.fire({
+                        icon: "warning",
+                        title: "กรุณาระบุรหัสพนักงาน",
+                        text: "จำเป็นต้องระบุรหัสพนักงาน",
+                        confirmButtonText: "ตกลง",
+                    });
 
                 return;
 
@@ -93,10 +100,18 @@ export default function ScannerView() {
                     result.length === 0
                 ) {
 
-                    alert(
-                        "ไม่พบรายการครุภัณฑ์"
-                    );
-
+                    // alert(
+                    //     "ไม่พบรายการครุภัณฑ์"
+                    // );
+                    Swal.fire({
+                        icon: "warning",
+                        title: "ไม่พบข้อมูล",
+                        text: "ไม่พบรายการข้อมูลที่ค้นหากรุณาตรวจสอบรหัสพนักงานหรือเลขครุภัณฑ์อีกครั้ง",
+                        confirmButtonText: "ตกลง",
+                    });
+                    setPersonKey("");
+                    setAssetSuffix("");
+                    setSearchResults([]);
                     return;
 
                 }
