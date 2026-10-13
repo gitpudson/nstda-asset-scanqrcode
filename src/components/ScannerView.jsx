@@ -23,7 +23,8 @@ import {
     Stack,
     Button,
     IconButton,
-    Paper
+    Paper,
+    Chip
 } from "@mui/material";
 
 export default function ScannerView() {
@@ -319,7 +320,7 @@ export default function ScannerView() {
                                                                         <>
                                                                             <Box
                                                                                 sx={{
-                                                                                    flex: 1
+                                                                                    flex: 1,
                                                                                 }}
                                                                             >
                                                                                 <Typography
@@ -342,60 +343,121 @@ export default function ScannerView() {
                                                                                     }
                                                                                 </Typography>
 
-                                                                                <Typography
-                                                                                    variant="caption"
-                                                                                    color="text.secondary"
+                                                                                <Box
                                                                                     sx={{
-                                                                                        fontWeight:
-                                                                                            700
+                                                                                        display: "flex",
+                                                                                        flexDirection: "column",
+                                                                                        alignItems: "center",
+                                                                                        mt: 0.5
                                                                                     }}
                                                                                 >
-                                                                                    {
-                                                                                        item.person_name
-                                                                                    }
-                                                                                </Typography>
+                                                                                    <Typography
+                                                                                        variant="caption"
+                                                                                        color="text.secondary"
+                                                                                        sx={{
+                                                                                            fontWeight:
+                                                                                                700
+                                                                                        }}
+                                                                                    >
+                                                                                        {
+                                                                                            item.person_name
+                                                                                        }
+                                                                                    </Typography>
 
+                                                                                    {
+
+                                                                                        item.updated_at &&
+                                                                                        String(item.updated_at).trim() !== "" && (
+
+                                                                                            <Chip
+                                                                                                label="ตรวจสอบแล้ว"
+                                                                                                size="small"
+                                                                                                sx={{
+                                                                                                    mt: 0.5,
+                                                                                                    backgroundColor: "#138000",
+                                                                                                    color: "#fff",
+                                                                                                    fontWeight: 700,
+                                                                                                    height: 22,
+                                                                                                    fontSize: "0.7rem"
+                                                                                                }}
+                                                                                            />
+
+                                                                                        )
+                                                                                    }
+
+                                                                                    {
+
+                                                                                        !item.updated_at &&
+                                                                                        String(item.updated_at).trim() === "" && (
+
+                                                                                            <Chip
+                                                                                                label="ยังไม่ตรวจสอบ"
+                                                                                                size="small"
+                                                                                                sx={{
+                                                                                                    mt: 0.5,
+                                                                                                    backgroundColor: "#6B7280",
+                                                                                                    color: "#fff",
+                                                                                                    fontWeight: 700,
+                                                                                                    height: 22,
+                                                                                                    fontSize: "0.7rem"
+                                                                                                }}
+                                                                                            />
+
+                                                                                        )
+                                                                                    }
+                                                                                </Box>
 
 
                                                                             </Box>
 
                                                                             <Box
-                                                                                component="img"
-                                                                                src={item.image_person}
-                                                                                alt=""
-                                                                                width={55}
-                                                                                height={55}
-                                                                                style={{
-                                                                                    borderRadius: "50%",
-                                                                                }}
                                                                                 sx={{
-                                                                                    // minWidth: 70,
-                                                                                    // height: 36,
-                                                                                    alignSelf: "center",
-                                                                                    textTransform: "none"
-                                                                                }}
-                                                                            />
-                                                                            <Button
-                                                                                variant="outlined"
-                                                                                size="small"
-                                                                                sx={{
-                                                                                    minWidth: 70,
-                                                                                    height: 36,
-                                                                                    alignSelf: "center",
-                                                                                    borderRadius: 2,
-                                                                                    fontWeight: 600,
-                                                                                    textTransform: "none"
-                                                                                }}
-                                                                                onClick={() => {
-
-                                                                                    setScanResult(
-                                                                                        item.asset_code
-                                                                                    );
-
+                                                                                    display: "flex",
+                                                                                    flexDirection: "column",
+                                                                                    alignItems: "center",
+                                                                                    justifyContent: "center",
+                                                                                    gap: 1
                                                                                 }}
                                                                             >
-                                                                                เลือก
-                                                                            </Button>
+
+                                                                                <Box
+                                                                                    component="img"
+                                                                                    src={item.image_person}
+                                                                                    alt=""
+                                                                                    width={55}
+                                                                                    height={55}
+                                                                                    style={{
+                                                                                        borderRadius: "50%",
+                                                                                    }}
+                                                                                    sx={{
+                                                                                        alignSelf: "center",
+                                                                                        textTransform: "none"
+                                                                                    }}
+                                                                                />
+                                                                                <Button
+                                                                                    variant="outlined"
+                                                                                    size="small"
+                                                                                    sx={{
+                                                                                        minWidth: 70,
+                                                                                        height: 36,
+                                                                                        alignSelf: "center",
+                                                                                        borderRadius: 2,
+                                                                                        fontWeight: 600,
+                                                                                        textTransform: "none"
+                                                                                    }}
+                                                                                    onClick={() => {
+
+                                                                                        setScanResult(
+                                                                                            item.asset_code
+                                                                                        );
+
+                                                                                    }}
+                                                                                >
+                                                                                    เลือก
+                                                                                </Button>
+                                                                            </Box>
+
+
                                                                         </>
                                                                     }
                                                                 </Box>
