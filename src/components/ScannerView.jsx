@@ -345,6 +345,10 @@ export default function ScannerView() {
                                                                                 <Typography
                                                                                     variant="caption"
                                                                                     color="text.secondary"
+                                                                                    sx={{
+                                                                                        fontWeight:
+                                                                                            700
+                                                                                    }}
                                                                                 >
                                                                                     {
                                                                                         item.person_name
