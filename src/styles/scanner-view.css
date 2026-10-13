@@ -1,5 +1,9 @@
 .scanner-card {
     padding: 16px;
+
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* =========================
@@ -47,6 +51,15 @@
     height: 100%;
 
     z-index: 1;
+}
+
+#reader {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+#reader * {
+    max-width: 100% !important;
 }
 
 #reader video {

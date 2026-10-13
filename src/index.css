@@ -28,3 +28,10 @@ a{
     opacity: 1;
   }
 }
+
+html,
+body,
+#root {
+  overflow-x: hidden;
+  max-width: 100%;
+}
