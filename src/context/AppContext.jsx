@@ -111,6 +111,54 @@ const AppContextProvider = (props) => {
 
     };
 
+    const fetAssetBySearchKey = async (personKey,assetSuffix) => {
+
+        try {
+
+            // console.log(qrcode);
+
+            const post = {
+                function: 'getAssetBySearchKey',
+                payload: {
+                    personKey: personKey,
+                    assetSuffix: assetSuffix
+                }
+            };
+
+            setIsLoading(true);
+
+            const response = await axios.post(
+                url_api_backend,
+                post,
+                {
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    }
+                }
+            );
+
+            if (response.data.success) {
+
+                const assetData = response.data.data;
+                return assetData;
+            }
+
+        } catch (error) {
+
+            console.error(
+                'Load Asset Error:',
+                error
+            );
+
+        } finally {
+
+            setIsLoading(false);
+
+        }
+
+    };
+
+
     const fetStatus = async () => {
 
 
@@ -181,6 +229,7 @@ const AppContextProvider = (props) => {
         menu_building,
         setMenuBuilding,
         fetAssetByAssetCode,
+        fetAssetBySearchKey,
         fetStatus,
         SaveData,
         isSaving,

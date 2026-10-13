@@ -1,20 +1,45 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CropFreeIcon from "@mui/icons-material/CropFree";
 // import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
 
 import Html5Scanner from "./Html5Scanner";
 import { assets } from "../assets/assets";
 
 import "../styles/scanner-view.css";
+import "../styles/asset-result.css";
 import AssetResultCard from "./AssetResultCard";
 import AppHeader from "./AppHeader";
+import { AppContext } from "../context/AppContext";
+
+import {
+    Box,
+    Card,
+    Typography,
+    TextField,
+    MenuItem,
+    Stack,
+    Button,
+    IconButton,
+    Paper
+} from "@mui/material";
 
 export default function ScannerView() {
+    const { fetAssetBySearchKey, isLoading } = useContext(AppContext);
     const [cameraOn, setCameraOn] = useState(false);
     const [scanResult, setScanResult] = useState(null);
     const [assetData, setAssetData] = useState(null);
+
+    const [personKey, setPersonKey] =
+        useState("");
+
+    const [assetSuffix, setAssetSuffix] =
+        useState("");
+
+    const [searchResults, setSearchResults] =
+        useState([]);
 
     const handleStartScan = () => {
         setCameraOn(true);
@@ -35,6 +60,83 @@ export default function ScannerView() {
             setCameraOn(true);
         }
     };
+
+    const handleSearchAsset =
+        async () => {
+
+            if (!personKey) {
+
+                alert(
+                    "กรุณาระบุรหัสพนักงาน"
+                );
+
+                return;
+
+            }
+
+            try {
+
+                const result =
+                    await fetAssetBySearchKey(
+                        personKey,
+                        assetSuffix
+                    );
+
+                //--------------------------------
+                // ไม่พบ
+                //--------------------------------
+
+                if (
+                    !result ||
+                    result.length === 0
+                ) {
+
+                    alert(
+                        "ไม่พบรายการครุภัณฑ์"
+                    );
+
+                    return;
+
+                }
+
+                //--------------------------------
+                // พบ 1 รายการ
+                //--------------------------------
+
+                if (
+                    result.length === 1
+                ) {
+
+                    setScanResult(
+                        result[0]
+                            .asset_code
+                    );
+
+                    return;
+
+                }
+
+                //--------------------------------
+                // พบหลายรายการ
+                //--------------------------------
+
+                // console.log(result);
+                setSearchResults(
+                    result
+                );
+
+                // TODO
+                // แสดงตารางเลือกรายการ
+
+            }
+
+            catch (e) {
+
+                console.error(e);
+
+            }
+
+        };
 
     return (
         <>
@@ -115,24 +217,228 @@ export default function ScannerView() {
                                 </div>
                             )}
 
-                            {/* <div className="status-icon">
-                    <CropFreeIcon />
-                </div> */}
-
-                            {/* <h2>
-                                {cameraOn ? "พร้อมสแกน" : "เริ่มสแกน"}
-                            </h2> */}
-
-                            {/* <p>
-                                    {cameraOn
-                                        ? "วาง QR Code หรือ Barcode ให้อยู่ในกรอบ"
-                                        : "แตะปุ่มด้านบนเพื่อเปิดกล้อง"}
-                                </p> */}
                             <p>
                                 {cameraOn
                                     ? "กดปุ่ม X เพื่อปิดกล้อง"
                                     : "แตะปุ่มกล้องเพื่อเริ่มสแกน"}
                             </p>
+
+                            {/* //ค้นหาครุภัณฑ์ด้วยรหัสพนักงาน */}
+                            <Box sx={{ mt: 3 }}>
+
+                                <Typography
+                                    className="label-search"
+                                    sx={{
+                                        mb: 2,
+                                        color: "#E65100",
+                                        fontWeight: 700,
+                                        fontSize: "1rem",
+                                        textAlign: "center"
+                                    }}
+                                >
+                                    หรือค้นหาด้วยรหัสพนักงาน
+                                </Typography>
+
+                                <Stack spacing={1}>
+
+                                    <TextField
+                                        fullWidth
+                                        placeholder="รหัสพนักงาน 6 หลัก *"
+                                        value={personKey}
+                                        // บังคับให้กรอกเฉพาะตัวเลข
+                                        onChange={(e) =>
+                                            setPersonKey(
+                                                e.target.value.replace(
+                                                    /\D/g,
+                                                    ""
+                                                )
+                                            )
+                                        }
+                                    />
+
+                                    <TextField
+                                        fullWidth
+                                        placeholder="เลขครุภัณฑ์ 5 ตัวท้าย (ไม่บังคับ)"
+                                        value={assetSuffix}
+                                        // บังคับให้กรอกเฉพาะตัวเลข
+                                        onChange={(e) =>
+                                            setAssetSuffix(
+                                                e.target.value.replace(
+                                                    /\D/g,
+                                                    ""
+                                                )
+                                            )
+                                        }
+                                    />
+
+                                    <Button
+                                        fullWidth
+                                        startIcon={<SearchIcon />}
+                                        variant="contained"
+                                        onClick={handleSearchAsset}
+                                        className="search-btn"
+                                    >
+                                        SEARCH
+                                    </Button>
+
+                                    {
+                                        searchResults.length > 0 && (
+                                            <Box sx={{ mt: 3 }}>
+                                                <Typography
+                                                    variant="subtitle2"
+                                                    sx={{
+                                                        mb: 1,
+                                                        fontWeight: 700
+                                                    }}
+                                                >
+                                                    ผลการค้นหา
+                                                    ({searchResults.length} รายการ)
+                                                </Typography>
+
+                                                {
+                                                    searchResults.map(
+                                                        (item) => (
+                                                            <Paper
+                                                                key={
+                                                                    item.row_number
+                                                                }
+                                                                sx={{
+                                                                    p: 1,
+                                                                    mb: 1,
+                                                                    borderRadius: 2
+                                                                }}
+                                                            >
+
+                                                                <Box
+                                                                    sx={{
+                                                                        display: "flex",
+                                                                        gap: 1
+                                                                    }}
+                                                                >
+                                                                    {
+                                                                        <>
+                                                                            <Box
+                                                                                sx={{
+                                                                                    flex: 1
+                                                                                }}
+                                                                            >
+                                                                                <Typography
+                                                                                    variant="caption"
+                                                                                    sx={{
+                                                                                        fontWeight:
+                                                                                            700
+                                                                                    }}
+                                                                                >
+                                                                                    {
+                                                                                        item.asset_code
+                                                                                    }
+                                                                                </Typography>
+
+                                                                                <Typography
+                                                                                    variant="body2"
+                                                                                >
+                                                                                    {
+                                                                                        item.asset_name
+                                                                                    }
+                                                                                </Typography>
+
+                                                                                <Typography
+                                                                                    variant="caption"
+                                                                                    color="text.secondary"
+                                                                                >
+                                                                                    {
+                                                                                        item.person_name
+                                                                                    }
+                                                                                </Typography>
+
+
+
+                                                                            </Box>
+
+                                                                            <Box
+                                                                                component="img"
+                                                                                src={item.image_person}
+                                                                                alt=""
+                                                                                width={55}
+                                                                                height={55}
+                                                                                style={{
+                                                                                    borderRadius: "50%",
+                                                                                }}
+                                                                                sx={{
+                                                                                    // minWidth: 70,
+                                                                                    // height: 36,
+                                                                                    alignSelf: "center",
+                                                                                    textTransform: "none"
+                                                                                }}
+                                                                            />
+                                                                            <Button
+                                                                                variant="outlined"
+                                                                                size="small"
+                                                                                sx={{
+                                                                                    minWidth: 70,
+                                                                                    height: 36,
+                                                                                    alignSelf: "center",
+                                                                                    borderRadius: 2,
+                                                                                    fontWeight: 600,
+                                                                                    textTransform: "none"
+                                                                                }}
+                                                                                onClick={() => {
+
+                                                                                    setScanResult(
+                                                                                        item.asset_code
+                                                                                    );
+
+                                                                                }}
+                                                                            >
+                                                                                เลือก
+                                                                            </Button>
+                                                                        </>
+                                                                    }
+                                                                </Box>
+
+                                                            </Paper>
+                                                        )
+
+                                                    )
+                                                }
+
+
+                                            </Box>
+                                        )
+                                    }
+
+                                </Stack>
+
+                            </Box>
+
+
+
+                            {(isLoading) &&
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        height: '100vh',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    {/* <Typography variant="h6" fontWeight={500}>
+                                        กำลังค้นหาหมายเลขครุภัณฑ์
+                                    </Typography>
+
+                                    <Typography variant="h6" fontWeight={500} className="label-asset">
+                                        {qrcode}
+                                    </Typography>
+
+                                    <Typography variant="h6" fontWeight={500}>
+                                        กรุณารอสักครู่.....
+                                    </Typography> */}
+
+                                    <img className='loading-search' src={assets.spinner} alt="" />
+                                </Box>
+                            }
+
 
                         </div>
                     </div>

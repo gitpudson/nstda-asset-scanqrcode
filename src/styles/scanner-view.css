@@ -479,3 +479,14 @@ outline: none;
 .rescan-btn:hover {
     background: #1d4ed8;
 }
+
+.label-search {
+  font-weight: 700 !important;
+  color: #ff6b00 !important;
+
+}
+
+.loading-search{
+    width: 40px;
+    margin-top: 10px;
+}
