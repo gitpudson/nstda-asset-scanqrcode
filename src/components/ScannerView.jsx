@@ -224,7 +224,7 @@ export default function ScannerView() {
                             </p>
 
                             {/* //ค้นหาครุภัณฑ์ด้วยรหัสพนักงาน */}
-                            <Box sx={{ mt: 3 }}>
+                            <Box sx={{ mt: 2 }}>
 
                                 <Typography
                                     className="label-search"
