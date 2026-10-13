@@ -17,7 +17,7 @@ const AppContextProvider = (props) => {
 
         try {
 
-            console.log("fetLocation");
+            // console.log("fetLocation");
 
             const post = {
                 function: 'getLocationNew',

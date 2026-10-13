@@ -49,6 +49,7 @@ export default function ScannerView() {
     const handleResetScan = () => {
         setScanResult(null);
         setCameraOn(true); //ถ้าต้องการให้กด "สแกนใหม่" แล้วเปิดกล้องต่อทันที true
+
     };
 
     const handleToggleCamera = () => {
@@ -63,8 +64,8 @@ export default function ScannerView() {
     };
 
     const handleSearchAsset =
-        async () => {
-
+        async () => {            
+            setSearchResults([])
             if (!personKey) {
 
                 alert(
