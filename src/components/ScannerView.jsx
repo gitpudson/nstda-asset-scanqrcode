@@ -77,7 +77,7 @@ export default function ScannerView() {
                         title: "กรุณาระบุรหัสพนักงาน",
                         text: "จำเป็นต้องระบุรหัสพนักงาน",
                         confirmButtonText: "ตกลง",
-                        width: "300px"
+                        // width: "300px"
                     });
 
                 return;
@@ -109,7 +109,7 @@ export default function ScannerView() {
                         title: "ไม่พบข้อมูล",
                         text: "ไม่พบรายการข้อมูลที่ค้นหากรุณาตรวจสอบรหัสพนักงานหรือเลขครุภัณฑ์อีกครั้ง",
                         confirmButtonText: "ตกลง",
-                        width: "300px"
+                        // width: "300px"
                     });
                     setPersonKey("");
                     setAssetSuffix("");

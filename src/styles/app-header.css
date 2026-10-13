@@ -2,6 +2,9 @@
   margin: 16px;
   height: 120px;
 
+  overflow: hidden;
+  position: relative;
+
   background: linear-gradient(135deg,
       #2196f3 0%,
       #2962ff 50%,
@@ -17,9 +20,10 @@
 
   color: white;
 
-  padding: 0 20px;
-  /* border-radius: 8px; */
-  /* border-top-right-radius: 8px; */
+  padding: 0 12px;
+  box-sizing: border-box;
+
+  width: calc(100% - 32px);
 }
 
 .circle {
