@@ -9,7 +9,7 @@ const AppContextProvider = (props) => {
     const url_api_backend = "https://script.google.com/macros/s/AKfycbyg6MlP1rcgNjTaWgob_GZyQS4WiJfE56-nSmhkuk2AgAwUwK8tUeFE1LKIFAfgH5ryzA/exec";
 
     const [menu_building, setMenuBuilding] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [location, setLocation] = useState({});
 
