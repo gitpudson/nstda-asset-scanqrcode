@@ -277,7 +277,7 @@ export default function ScannerView() {
 
                                     <TextField
                                         fullWidth
-                                        placeholder="เลขครุภัณฑ์ 5 ตัวท้าย (ไม่บังคับ)"
+                                        placeholder="เลขครุภัณฑ์ 5 ตัวท้าย"
                                         value={assetSuffix}
                                         // บังคับให้กรอกเฉพาะตัวเลข
                                         onChange={(e) =>
